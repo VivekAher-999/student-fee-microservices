@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Fee / Receipt Service API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082
+paths:
+  /api/receipts:
+    post:
+      summary: Create a receipt (collect fee)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+      responses:
+        '200':
+          description: saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+    get:
+      summary: List receipts
+      responses:
+        '200':
+          description: list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Receipt'
+  /api/receipts/{receiptNumber}:
+    get:
+      summary: Get receipt by number
+      parameters:
+        - name: receiptNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: receipt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+        '404':
+          description: not found
+components:
+  schemas:
+    Receipt:
+      type: object
+      properties:
+        id:
+          type: integer
+        receiptNumber:
+          type: string
+        studentId:
+          type: string
+        studentName:
+          type: string
+        grade:
+          type: string
+        schoolName:
+          type: string
+        mobileNumber:
+          type: string
+        amount:
+          type: number
+          format: double
+        paymentMode:
+          type: string
+        paymentDate:
+          type: string
+          format: date-time
+        remarks:
+          type: string
+      required:
+        - studentId
+        - amount

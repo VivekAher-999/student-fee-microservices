@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "StudentFee Microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8081/api/students",
+          "host": [
+            "http://localhost:8081"
+          ],
+          "path": [
+            "api",
+            "students"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"S1001\",\n  \"studentName\": \"Asha Kumar\",\n  \"grade\": \"5\",\n  \"mobileNumber\": \"9876543210\",\n  \"schoolName\": \"Global Public School\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Student",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8081/api/students/S1001",
+          "host": [
+            "http://localhost:8081"
+          ],
+          "path": [
+            "api",
+            "students",
+            "S1001"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Receipt",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/api/receipts",
+          "host": [
+            "http://localhost:8082"
+          ],
+          "path": [
+            "api",
+            "receipts"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"S1001\",\n  \"amount\": 2500.0,\n  \"paymentMode\": \"UPI\",\n  \"remarks\": \"Fee for Oct 2025\"\n}"
+        }
+      }
+    },
+    {
+      "name": "List Receipts",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8082/api/receipts",
+          "host": [
+            "http://localhost:8082"
+          ],
+          "path": [
+            "api",
+            "receipts"
+          ]
+        }
+      }
+    }
+  ]
+}
